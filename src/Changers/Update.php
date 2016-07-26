@@ -21,7 +21,6 @@ class Update extends Search {
 
 	public function __construct(array & $data_array, $update_array) {
 		parent::__construct($data_array);
-		Validator::validateUnknownColumns($data_array, $update_array);
 		$this->data_array = &$data_array;
 		$this->update_array = $update_array;
 	}

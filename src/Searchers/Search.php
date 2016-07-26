@@ -30,6 +30,7 @@ class Search {
 
 	protected function getResults() {
 		$output = array();
+
 		foreach ($this->filter as $key => $val) {
 			$output[$key] = $val;
 		}

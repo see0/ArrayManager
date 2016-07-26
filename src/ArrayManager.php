@@ -39,6 +39,10 @@ class ArrayManager {
 		return new ArrayManage\Changer\Insert($this->data_array, $values_array);
 	}
 
+	public function upsert($values_array) {
+		return new ArrayManage\Changer\Upsert($this->data_array, $values_array);
+	}
+
 }
 
 class ManagerException extends \Exception{

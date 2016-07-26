@@ -42,11 +42,12 @@ class Filter extends \FilterIterator {
 	private function applyConditions($current, $filter) {
 		$match = TRUE;
 		foreach ($filter->getConditionsAnd() as $value) {
-			Validator::validateUnknownColumns($current, array($value[0] => NULL));
-			if (!$value[2]->match($current[$value[0]], $value[1], $current)) {
+			if (!isset($current[$value[0]]) || !$value[2]->match($current[$value[0]], $value[1], $current)) {
 				$match = FALSE;
+
 			}
 		}
+
 		if (!$match) {
 			return FALSE;
 		}
@@ -55,8 +56,7 @@ class Filter extends \FilterIterator {
 		}
 		$match = FALSE;
 		foreach ($filter->getConditionsOr() as $value) {
-			Validator::validateUnknownColumns($current, array($value[0] => NULL));
-			if ($value[2]->match($current[$value[0]], $value[1], $current)) {
+			if (isset($current[$value[0]]) && $value[2]->match($current[$value[0]], $value[1], $current)) {
 				$match = TRUE;
 			}
 		}

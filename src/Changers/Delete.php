@@ -22,9 +22,15 @@ class Delete extends Search {
 	}
 
 	public function execute() {
-		foreach($this->getResults() as $key => $val) {
-			unset($this->data_array[$key]);
+		$data = $this->getResults();
+
+		if(!empty($data)){
+			foreach($data as $key => $val) {
+				unset($this->data_array[$key]);
+			}
 		}
+
+		return $data;
 	}
 
 	public function test() {
